@@ -4,26 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro</title>
+    <style>
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+            font-size:2em;
+            background-image:url('pexels-pixabay-tomatoes.jpg');
+            color:white;
+        }
+
+        .pomodoro-container{
+            display:flex;
+            width:50%;
+            margin:170px auto;
+            justify-content: center;
+        }
+
+        .pomodoro-container:hover{
+            cursor:default;
+        }
+
+        .pomodoro-item{
+            padding:16px;
+            margin:16px;
+            border-radius:8px;
+            width: 250px;
+            text-align: center;
+            border: 2px solid dimgray;
+        }
+
+        .pomodoro-item:hover{
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        button{
+            font-size: 0.5em;
+            padding: 6px 10px;
+            margin-top: 8px;
+            margin-right:4px;
+            color: #e5e5e5;
+            border: 2px solid #00d400;
+            border-radius: 4px;
+            background-color: inherit;
+            box-sizing:border-box;
+        }
+
+        button:hover{
+            cursor:pointer;
+            transition-duration: .4s;
+            border:none;
+            background-color: #00d400;;
+            color: #f33;
+        }
+    </style>
 </head>
 <body>
-    <p>Focus</p>
-    <p id="work_timer">25:00</p>
-    <button onclick="interval = setInterval(update_work_timer, 1000)">Start</button>
-    <button onclick="clearInterval(interval)">Stop</button>
-    <button onclick="reset('work_timer')">Reset</button>
-
-    <p>Short break</p>
-    <p id="shortbreak_timer">05:00</p>
-    <button onclick="short_interval = setInterval(update_shortbreak_timer, 1000)">Start</button>
-    <button onclick="clearInterval(short_interval)">Stop</button>
-    <button onclick="reset('shortbreak_timer')">Reset</button>
-
-    <p>Long break</p>
-    <p id="longbreak_timer">10:00</p>
-    <button onclick="long_interval = setInterval(update_longbreak_timer, 1000)">Start</button>
-    <button onclick="clearInterval(long_interval)">Stop</button>
-    <button onclick="reset('longbreak_timer')">Reset</button>
-
+    <div class="pomodoro-container">
+        <div class="pomodoro-item">
+            <h3>Focus</h3>
+            <p id="work_timer">25:00</p>
+            <button onclick="interval = setInterval(update_work_timer, 1000)">Start</button>
+            <button onclick="clearInterval(interval)">Stop</button>
+            <button onclick="reset('work_timer')">Reset</button>
+        </div>
+        <div class="pomodoro-item">
+            <h3>Short break</h3>
+            <p id="shortbreak_timer">05:00</p>
+            <button onclick="short_interval = setInterval(update_shortbreak_timer, 1000)">Start</button>
+            <button onclick="clearInterval(short_interval)">Stop</button>
+            <button onclick="reset('shortbreak_timer')">Reset</button>
+        </div>
+        <div class="pomodoro-item">
+            <h3>Long break</h3>
+            <p id="longbreak_timer">10:00</p>
+            <button onclick="long_interval = setInterval(update_longbreak_timer, 1000)">Start</button>
+            <button onclick="clearInterval(long_interval)">Stop</button>
+            <button onclick="reset('longbreak_timer')">Reset</button>
+        </div>
+    </div>
     <script>
         function get_seconds(time){
             // extracts seconds from a string in the format MM:SS
