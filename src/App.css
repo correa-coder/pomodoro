@@ -1,42 +1,81 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.card {
+  background-color: white;
+  color: hsl(0, 0%, var(--size-lg));
+  border-radius: var(--size-md);
+  border: 1px solid white;
+  box-shadow: 0px 0px var(--size-md) 0px rgb(0 0 0 / 20%);
+  padding: var(--size-3xl);
+}
+
+.timer-display {
+  font-size: var(--size-3xl);
+  font-weight: 600;
+}
+
+.timer-label {
+  font-size: var(--size-lg);
+  font-weight: 500;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.timer-display, .timer-label {
+  cursor: default;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn {
+  padding: var(--size-md) var(--size-md);
+  outline: none;
+  cursor: pointer;
+  font-size: var(--size-lg);
+  flex: 1;
+  border: none;
+  border-radius: var(--size-sm);
+  font-weight: 500;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.btn:hover {
+  scale: 1.05;
 }
 
-.card {
-  padding: 2em;
+.btn.primary {
+  background-color: tomato;
+  color: white;
 }
 
-.read-the-docs {
-  color: #888;
+.group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--size-lg);
+}
+
+/* Circular progress */
+.circular-progress {
+  position: relative;
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.circular-progress::before {
+  content: '';
+  position: absolute;
+  height: 210px;
+  width: 210px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.progress-value {
+  font-size: var(--size-2xl);
+  font-weight: 600;
+}
+
+.emoji {
+  font-family: 'Noto Emoji', sans-serif;
+  font-weight: 600;
 }
