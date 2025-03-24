@@ -1,35 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pomodoro</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="pomodoro-container">
-        <div class="pomodoro-item">
-            <h3>Focus</h3>
-            <p id="work_timer">25:00</p>
-            <button onclick="interval = setInterval(update_work_timer, 1000)">Start</button>
-            <button onclick="clearInterval(interval)">Stop</button>
-            <button onclick="reset('work_timer')">Reset</button>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Pomodoro</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="pomodoro-container">
+            <div class="pomodoro-item">
+                <h3>Focus</h3>
+                <p id="work_timer">25:00</p>
+                <button
+                    onclick="interval = setInterval(update_work_timer, 1000)"
+                >
+                    Start
+                </button>
+                <button onclick="clearInterval(interval)">Stop</button>
+                <button onclick="reset('work_timer')">Reset</button>
+            </div>
+            <div class="pomodoro-item">
+                <h3>Short break</h3>
+                <p id="shortbreak_timer">05:00</p>
+                <button
+                    onclick="short_interval = setInterval(update_shortbreak_timer, 1000)"
+                >
+                    Start
+                </button>
+                <button onclick="clearInterval(short_interval)">Stop</button>
+                <button onclick="reset('shortbreak_timer')">Reset</button>
+            </div>
+            <div class="pomodoro-item">
+                <h3>Long break</h3>
+                <p id="longbreak_timer">10:00</p>
+                <button
+                    onclick="long_interval = setInterval(update_longbreak_timer, 1000)"
+                >
+                    Start
+                </button>
+                <button onclick="clearInterval(long_interval)">Stop</button>
+                <button onclick="reset('longbreak_timer')">Reset</button>
+            </div>
         </div>
-        <div class="pomodoro-item">
-            <h3>Short break</h3>
-            <p id="shortbreak_timer">05:00</p>
-            <button onclick="short_interval = setInterval(update_shortbreak_timer, 1000)">Start</button>
-            <button onclick="clearInterval(short_interval)">Stop</button>
-            <button onclick="reset('shortbreak_timer')">Reset</button>
-        </div>
-        <div class="pomodoro-item">
-            <h3>Long break</h3>
-            <p id="longbreak_timer">10:00</p>
-            <button onclick="long_interval = setInterval(update_longbreak_timer, 1000)">Start</button>
-            <button onclick="clearInterval(long_interval)">Stop</button>
-            <button onclick="reset('longbreak_timer')">Reset</button>
-        </div>
-    </div>
-    <script src="script.js" defer></script>
-</body>
+        <script src="script.js" defer></script>
+    </body>
 </html>

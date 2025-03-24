@@ -3,35 +3,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300..700&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 :root {
-  font-family: "Noto Sans", system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  font-size: 16px;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: 'Noto Sans', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    font-size: 16px;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
-  /* Sizes */
-  --size-sm: 0.25rem;
-  --size-md: 0.5rem;
-  --size-lg: 1rem;
-  --size-xl: 1.5rem;
-  --size-2xl: 2rem;
-  --size-3xl: 3rem;
-  --size-4xl: 4rem;
+    /* Sizes */
+    --size-sm: 0.25rem;
+    --size-md: 0.5rem;
+    --size-lg: 1rem;
+    --size-xl: 1.5rem;
+    --size-2xl: 2rem;
+    --size-3xl: 3rem;
+    --size-4xl: 4rem;
 }
 
 body {
-  background-color: aliceblue;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background-color: aliceblue;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

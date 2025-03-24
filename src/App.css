@@ -1,81 +1,82 @@
 .card {
-  background-color: white;
-  color: hsl(0, 0%, var(--size-lg));
-  border-radius: var(--size-md);
-  border: 1px solid white;
-  box-shadow: 0px 0px var(--size-md) 0px rgb(0 0 0 / 20%);
-  padding: var(--size-3xl);
+    background-color: white;
+    color: hsl(0, 0%, var(--size-lg));
+    border-radius: var(--size-md);
+    border: 1px solid white;
+    box-shadow: 0px 0px var(--size-md) 0px rgb(0 0 0 / 20%);
+    padding: var(--size-3xl);
 }
 
 .timer-display {
-  font-size: var(--size-3xl);
-  font-weight: 600;
+    font-size: var(--size-3xl);
+    font-weight: 600;
 }
 
 .timer-label {
-  font-size: var(--size-lg);
-  font-weight: 500;
-  text-align: center;
+    font-size: var(--size-lg);
+    font-weight: 500;
+    text-align: center;
 }
 
-.timer-display, .timer-label {
-  cursor: default;
+.timer-display,
+.timer-label {
+    cursor: default;
 }
 
 .btn {
-  padding: var(--size-md) var(--size-md);
-  outline: none;
-  cursor: pointer;
-  font-size: var(--size-lg);
-  flex: 1;
-  border: none;
-  border-radius: var(--size-sm);
-  font-weight: 500;
+    padding: var(--size-md) var(--size-md);
+    outline: none;
+    cursor: pointer;
+    font-size: var(--size-lg);
+    flex: 1;
+    border: none;
+    border-radius: var(--size-sm);
+    font-weight: 500;
 }
 
 .btn:hover {
-  scale: 1.05;
+    scale: 1.05;
 }
 
 .btn.primary {
-  background-color: tomato;
-  color: white;
+    background-color: tomato;
+    color: white;
 }
 
 .group {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--size-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--size-lg);
 }
 
 /* Circular progress */
 .circular-progress {
-  position: relative;
-  height: 250px;
-  width: 250px;
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    position: relative;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .circular-progress::before {
-  content: '';
-  position: absolute;
-  height: 210px;
-  width: 210px;
-  background-color: white;
-  border-radius: 50%;
+    content: '';
+    position: absolute;
+    height: 210px;
+    width: 210px;
+    background-color: white;
+    border-radius: 50%;
 }
 
 .progress-value {
-  font-size: var(--size-2xl);
-  font-weight: 600;
+    font-size: var(--size-2xl);
+    font-weight: 600;
 }
 
 .emoji {
-  font-family: 'Noto Emoji', sans-serif;
-  font-weight: 600;
+    font-family: 'Noto Emoji', sans-serif;
+    font-weight: 600;
 }
