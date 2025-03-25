@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import TimerProgress from './components/TimerProgress';
+import SettingsIcon from './icons/settings.svg';
 
 const modesMinutes = {
     work: 1,
@@ -49,8 +50,8 @@ function App() {
 
     useEffect(() => {
         if (remainingSeconds === 0) resetTimer();
-        return () => {}
-    }, [remainingSeconds])
+        return () => {};
+    }, [remainingSeconds]);
 
     return (
         <main>
@@ -61,8 +62,10 @@ function App() {
                     totalSeconds={modesMinutes[timerMode] * 60}
                     timerMode={timerState}
                 />
-
                 {/**Controls */}
+                <div>
+                    <SettingsIcon />
+                </div>
                 <div className="group" style={{ marginTop: '3rem' }}>
                     <button
                         className="btn primary"

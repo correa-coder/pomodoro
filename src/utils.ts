@@ -8,6 +8,9 @@ export function formatTime(seconds: number): string {
     return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
 }
 
-export function calculateTimerProgress(currentValue: number, totalValue: number) {
+export function calculateTimerProgress(
+    currentValue: number,
+    totalValue: number
+) {
     return ((totalValue - currentValue) / totalValue) * 100;
 }

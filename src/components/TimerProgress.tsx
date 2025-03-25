@@ -6,8 +6,15 @@ interface ProgressProps {
     timerMode: 'started' | 'paused' | 'stopped';
 }
 
-export default function TimerProgress({ remainingSeconds, totalSeconds, timerMode }: ProgressProps) {
-    const progressValue = calculateTimerProgress(remainingSeconds, totalSeconds);
+export default function TimerProgress({
+    remainingSeconds,
+    totalSeconds,
+    timerMode,
+}: ProgressProps) {
+    const progressValue = calculateTimerProgress(
+        remainingSeconds,
+        totalSeconds
+    );
 
     const timerLabels = {
         started: 'Focus',

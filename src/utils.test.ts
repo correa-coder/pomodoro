@@ -1,4 +1,4 @@
-import { describe, test, expect} from 'vitest';
+import { describe, test, expect } from 'vitest';
 import { calculateTimerProgress, formatTime } from './utils';
 
 describe('Time formatting', () => {
@@ -8,7 +8,7 @@ describe('Time formatting', () => {
 
     test('should work when the seconds is 0', () => {
         expect(formatTime(0)).toBe('00:00');
-    })
+    });
 });
 
 describe('Timer progress', () => {
