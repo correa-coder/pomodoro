@@ -38,6 +38,15 @@
     scale: 1.05;
 }
 
+.btn:disabled {
+    opacity: 0.9;
+    cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+    scale: 1;
+}
+
 .btn.primary {
     background-color: tomato;
     color: white;

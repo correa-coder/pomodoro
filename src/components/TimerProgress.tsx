@@ -1,11 +1,19 @@
-import { calculateProgress, formatTime } from '../utils';
+import { calculateTimerProgress, formatTime } from '../utils';
 
 interface ProgressProps {
-    seconds: number;
+    remainingSeconds: number;
+    totalSeconds: number;
+    timerMode: 'started' | 'paused' | 'stopped';
 }
 
-export default function TimerProgress({ seconds }: ProgressProps) {
-    const progressValue = calculateProgress(seconds, 30 * 60);
+export default function TimerProgress({ remainingSeconds, totalSeconds, timerMode }: ProgressProps) {
+    const progressValue = calculateTimerProgress(remainingSeconds, totalSeconds);
+
+    const timerLabels = {
+        started: 'Focus',
+        paused: 'Paused',
+        stopped: 'Get ready!',
+    };
 
     return (
         <div
@@ -27,12 +35,11 @@ export default function TimerProgress({ seconds }: ProgressProps) {
                     className="timer-display"
                     style={{ position: 'relative' }}
                 >
-                    {formatTime(seconds)}
+                    {formatTime(remainingSeconds)}
                 </span>
                 <span className="timer-label">
-                    <span className="emoji">⏰</span> Focus
+                    <span className="emoji">⏰</span> {timerLabels[timerMode]}
                 </span>
-                {/* <span className="progress-value">{progressValue}%</span> */}
             </div>
         </div>
     );
