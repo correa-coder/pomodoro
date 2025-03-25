@@ -1,3 +1,4 @@
+import React from 'react';
 import { calculateTimerProgress, formatTime } from '../utils';
 
 interface ProgressProps {
@@ -25,23 +26,14 @@ export default function TimerProgress({
     return (
         <div
             className="circular-progress"
-            style={{
-                background: `conic-gradient(tomato ${progressValue * 3.6}deg, #ededed 0deg)`,
-            }}
+            style={
+                {
+                    '--progress-deg': `${progressValue * 3.6}deg`,
+                } as React.CSSProperties
+            }
         >
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 4,
-                    position: 'relative',
-                    textAlign: 'center',
-                }}
-            >
-                <span
-                    className="timer-display"
-                    style={{ position: 'relative' }}
-                >
+            <div className="timer-content">
+                <span className="timer-display">
                     {formatTime(remainingSeconds)}
                 </span>
                 <span className="timer-label">

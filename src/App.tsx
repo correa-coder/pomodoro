@@ -1,57 +1,93 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import TimerProgress from './components/TimerProgress';
-import SettingsIcon from './icons/settings.svg';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
+import { formatTime } from './utils';
 
-const modesMinutes = {
-    work: 1,
-    shortBreak: 1,
-    longBreak: 2,
-};
+const modes = [
+    {
+        label: 'Work',
+        duration: 30,
+        key: 'work',
+    },
+    {
+        label: 'Short Break',
+        duration: 5,
+        key: 'short_break',
+    },
+    {
+        label: 'Long Break',
+        duration: 15,
+        key: 'long_break',
+    },
+];
 
 function App() {
-    const [timerMode, setTimerMode] = useState<
-        'work' | 'shortBreak' | 'longBreak'
-    >('work');
-    const [remainingSeconds, setRemainingSeconds] = useState<number>(
-        () => modesMinutes[timerMode] * 60
+    const [currentModeIndex, setCurrentModeIndex] = useState(0);
+    const currentMode = modes[currentModeIndex];
+    const [remainingSeconds, setRemainingSeconds] = useState(
+        currentMode.duration * 60
     );
     const [timerState, setTimerState] = useState<
         'started' | 'paused' | 'stopped'
     >('stopped');
-    const [timerInterval, setTimerInterval] = useState<any>(null);
-    const [buttonLabel, setButtonLabel] = useState('Start');
+    const timerIntervalRef = useRef<number | null>(null);
 
+    const clearTimeInterval = () => {
+        if (timerIntervalRef.current) {
+            clearInterval(timerIntervalRef.current);
+            timerIntervalRef.current = null;
+        }
+    };
+
+    // Reset the timer when the mode changes
+    useEffect(() => {
+        clearTimeInterval();
+        setTimerState('stopped');
+        setRemainingSeconds(currentMode.duration * 60);
+    }, [currentMode]);
+
+    // Toggle between starting and pausing the timer
     const toggleTimer = () => {
-        if (!timerInterval) {
-            setTimerInterval(
-                setInterval(() => {
-                    setRemainingSeconds(prevSeconds => prevSeconds - 1);
-                }, 1000)
-            );
-
+        if (timerState !== 'started') {
+            timerIntervalRef.current = setInterval(() => {
+                setRemainingSeconds(previous => {
+                    if (previous < 1) {
+                        clearTimeInterval();
+                        setTimerState('stopped');
+                        return currentMode.duration * 60;
+                    }
+                    document.title = `Pomodoro - ${formatTime(previous - 1)}`;
+                    return previous - 1;
+                });
+            }, 1000);
             setTimerState('started');
-            setButtonLabel('Pause');
         } else {
-            clearInterval(timerInterval);
-            setTimerInterval(null);
+            clearTimeInterval();
             setTimerState('paused');
-            setButtonLabel('Resume');
         }
     };
 
     const resetTimer = () => {
-        clearInterval(timerInterval);
-        setTimerInterval(null);
-        setButtonLabel('Start');
-        setRemainingSeconds(modesMinutes[timerMode] * 60);
+        clearTimeInterval();
         setTimerState('stopped');
+        setRemainingSeconds(currentMode.duration * 60);
+        document.title = `Pomodoro - ${formatTime(currentMode.duration * 60)}`;
     };
 
-    useEffect(() => {
-        if (remainingSeconds === 0) resetTimer();
-        return () => {};
-    }, [remainingSeconds]);
+    const goToPreviousMode = () => {
+        if (currentModeIndex > 0 && timerState !== 'started') {
+            setCurrentModeIndex(currentModeIndex - 1);
+            document.title = `Pomodoro - ${formatTime(modes[currentModeIndex - 1].duration * 60)}`;
+        }
+    };
+
+    const goToNextMode = () => {
+        if (currentModeIndex < modes.length - 1 && timerState !== 'started') {
+            setCurrentModeIndex(currentModeIndex + 1);
+            document.title = `Pomodoro - ${formatTime(modes[currentModeIndex + 1].duration * 60)}`;
+        }
+    };
 
     return (
         <main>
@@ -59,23 +95,43 @@ function App() {
                 {/** Timer display */}
                 <TimerProgress
                     remainingSeconds={remainingSeconds}
-                    totalSeconds={modesMinutes[timerMode] * 60}
+                    totalSeconds={currentMode.duration * 60}
                     timerMode={timerState}
                 />
                 {/**Controls */}
-                <div>
-                    <SettingsIcon />
-                </div>
-                <div className="group" style={{ marginTop: '3rem' }}>
+                <div className="group center my-4" style={{ width: '80%' }}>
                     <button
-                        className="btn primary"
-                        onClick={() => toggleTimer()}
+                        className="btn-ghost"
+                        onClick={goToPreviousMode}
+                        disabled={
+                            currentModeIndex === 0 || timerState === 'started'
+                        }
                     >
-                        {buttonLabel}
+                        <FaChevronLeft />
+                    </button>
+                    <span className="session-label">{currentMode.label}</span>
+                    <button
+                        className="btn-ghost"
+                        onClick={goToNextMode}
+                        disabled={
+                            currentModeIndex === modes.length - 1 ||
+                            timerState === 'started'
+                        }
+                    >
+                        <FaChevronRight />
+                    </button>
+                </div>
+                <div className="group mt-6">
+                    <button className="btn primary" onClick={toggleTimer}>
+                        {timerState === 'paused'
+                            ? 'Resume'
+                            : timerState === 'started'
+                              ? 'Pause'
+                              : 'Start'}
                     </button>
                     <button
                         className="btn"
-                        onClick={() => resetTimer()}
+                        onClick={resetTimer}
                         disabled={timerState === 'stopped'}
                     >
                         Reset

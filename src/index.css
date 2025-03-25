@@ -26,6 +26,9 @@
     --size-2xl: 2rem;
     --size-3xl: 3rem;
     --size-4xl: 4rem;
+
+    /* Colors */
+    --color-secondary: #e2e2e2;
 }
 
 body {
