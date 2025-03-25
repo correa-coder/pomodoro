@@ -18,7 +18,7 @@ export default function TimerProgress({
     );
 
     const timerLabels = {
-        started: 'Focus',
+        started: 'Active',
         paused: 'Paused',
         stopped: 'Get ready!',
     };

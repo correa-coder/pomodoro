@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import TimerProgress from './components/TimerProgress';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
+import { FaChevronLeft, FaChevronRight, FaGithub } from 'react-icons/fa6';
 import { formatTime } from './utils';
 
 const modes = [
@@ -137,6 +137,15 @@ function App() {
                         Reset
                     </button>
                 </div>
+            </div>
+            <div className="fixed-items">
+                <a
+                    href="https://github.com/correa-coder/pomodoro"
+                    target="_blank"
+                    className="btn-link"
+                >
+                    <FaGithub />
+                </a>
             </div>
         </main>
     );

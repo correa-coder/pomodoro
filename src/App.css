@@ -76,6 +76,22 @@
     cursor: not-allowed;
 }
 
+.btn-link {
+    font-size: 2rem;
+    color: hsl(0, 0%, 18%);
+    background-color: white;
+    border-radius: var(--size-sm);
+    padding: var(--size-sm) var(--size-sm);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    line-height: 0;
+    display: inline-block;
+    transition: scale 0.2s ease-in-out;
+}
+
+.btn-link:hover {
+    scale: 1.05;
+}
+
 .group {
     display: flex;
     justify-content: space-between;
@@ -150,4 +166,10 @@
 
 .mt-6 {
     margin-top: var(--size-2xl);
+}
+
+.fixed-items {
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
 }
