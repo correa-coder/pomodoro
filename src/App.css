@@ -48,7 +48,7 @@
 }
 
 .btn.primary {
-    background-color: tomato;
+    background-color: var(--color-primary);
     color: white;
 }
 
@@ -92,6 +92,23 @@
     scale: 1.05;
 }
 
+.btn-settings {
+    font-size: 1.5rem;
+    color: hsl(0, 0%, 18%);
+    background-color: transparent;
+    border-radius: var(--size-sm);
+    padding: var(--size-sm) var(--size-sm);
+    border: none;
+    line-height: 0;
+    display: inline-block;
+    transition: scale 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.btn-settings:hover {
+    scale: 1.05;
+}
+
 .group {
     display: flex;
     justify-content: space-between;
@@ -110,7 +127,7 @@
     align-items: center;
     justify-content: center;
     background: conic-gradient(
-        tomato var(--progress-deg),
+        var(--color-primary) var(--progress-deg),
         var(--color-secondary) 0deg
     );
     transition: all 0.3s ease-in-out;
@@ -172,4 +189,106 @@
     position: fixed;
     right: 5%;
     bottom: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--size-md);
+}
+
+/* Dialog */
+
+.dialog-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dialog-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 90vw;
+    max-width: 500px;
+}
+
+/* Example of styling based on state using data attributes */
+.dialog-content[data-state='open'] {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.dialog-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    padding-bottom: var(--size-md);
+}
+
+.dialog-description {
+    margin: var(--size-lg) 0 var(--size-lg);
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Switch */
+
+/* Base styles for the switch root */
+.switch-root {
+    width: 40px;
+    height: 20px;
+    background-color: var(--color-secondary);
+    border-radius: 9999px;
+    position: relative;
+    transition: background-color 0.2s;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+/* Change background when checked */
+.switch-root[data-state='checked'] {
+    background-color: var(--color-primary);
+}
+
+/* Styles for the thumb */
+.switch-thumb {
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    border: 2px solid rgba(0, 0, 0, 0.6);
+    /* By default, the thumb is on the left */
+    transform: translateX(0);
+    cursor: pointer;
+}
+
+/* When checked, move the thumb to the right */
+.switch-root[data-state='checked'] .switch-thumb {
+    transform: translateX(100%);
+}
+
+.switch-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
 }

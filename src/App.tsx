@@ -3,6 +3,8 @@ import './App.css';
 import TimerProgress from './components/TimerProgress';
 import { FaChevronLeft, FaChevronRight, FaGithub } from 'react-icons/fa6';
 import { formatTime } from './utils';
+import Modal from './components/Modal';
+import SwitchPrimary from './components/Switch';
 
 const modes = [
     {
@@ -12,7 +14,7 @@ const modes = [
     },
     {
         label: 'Short Break',
-        duration: 1,
+        duration: 5,
         key: 'short_break',
     },
     {
@@ -33,6 +35,11 @@ function App() {
     >('stopped');
     const timerIntervalRef = useRef<number | null>(null);
     const audioRef = useRef<HTMLAudioElement | null>(null);
+    const [playAudioChecked, setPlayAudioChecked] = useState(true);
+
+    const togglePlayAudio = () => {
+        setPlayAudioChecked(!playAudioChecked);
+    };
 
     const clearTimeInterval = () => {
         if (timerIntervalRef.current) {
@@ -62,7 +69,8 @@ function App() {
                                 'hjm-glass_bell_1.wav'
                             );
                         }
-                        audioRef.current.play();
+
+                        if (playAudioChecked) audioRef.current.play();
 
                         setTimerState('stopped');
                         return currentMode.duration * 60;
@@ -149,6 +157,15 @@ function App() {
                 </div>
             </div>
             <div className="fixed-items">
+                <Modal>
+                    <div>
+                        <SwitchPrimary
+                            label="Sound"
+                            checked={playAudioChecked}
+                            onCheckedChange={togglePlayAudio}
+                        />
+                    </div>
+                </Modal>
                 <a
                     href="https://github.com/correa-coder/pomodoro"
                     target="_blank"
