@@ -12,7 +12,7 @@ const modes = [
     },
     {
         label: 'Short Break',
-        duration: 5,
+        duration: 1,
         key: 'short_break',
     },
     {
@@ -32,6 +32,7 @@ function App() {
         'started' | 'paused' | 'stopped'
     >('stopped');
     const timerIntervalRef = useRef<number | null>(null);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
 
     const clearTimeInterval = () => {
         if (timerIntervalRef.current) {
@@ -54,6 +55,15 @@ function App() {
                 setRemainingSeconds(previous => {
                     if (previous < 1) {
                         clearTimeInterval();
+
+                        // Play timer sound alert
+                        if (!audioRef.current) {
+                            audioRef.current = new Audio(
+                                'hjm-glass_bell_1.wav'
+                            );
+                        }
+                        audioRef.current.play();
+
                         setTimerState('stopped');
                         return currentMode.duration * 60;
                     }
